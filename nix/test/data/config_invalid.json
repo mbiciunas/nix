@@ -1,0 +1,56 @@
+{
+  "script": [
+    {
+      "name": "script1",
+      "description": "Test script #1",
+      "code": "from libnix.process.processes import Processes\n\n",
+      "status": 0,
+      "tag": [
+        "tag1",
+        "tag2"
+      ]
+    },
+    {
+      "name": "script2",
+      "description": "Test script #2",
+      "code": "from libnix.process.processes import Processes\n\n",
+      "status": 2,
+      "tag": [
+        "tag2",
+        "tag3"
+      ]
+    },
+    {
+      "name": "script3",
+      "description": "Test script #3",
+      "code": "from libnix.process.processes import Processes\n\n",
+      "status": 0,
+      "tag": [
+        "tag1"
+      ]
+    },
+    {
+      "name": "script4",
+      "description": "Test script #4",
+      "code": "from libnix.process.processes import Processes\n\n",
+      "status": 0,
+      "tag": [
+        "tag2"
+      ]
+    }
+  ],
+  "tag": [
+    {
+      "name": "tag1",
+      "description": "Test tag #1"
+    },
+    {
+      "name": "tag2",
+      "description": "Test tag #2"
+    },
+    {
+      "name": "tag3",
+      "description": "Test tag #3"
+    }
+  ]
+}

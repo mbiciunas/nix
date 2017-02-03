@@ -1,0 +1,47 @@
+{
+  "script": [
+    {
+      "name": "script1",
+      "code": "print('This is code 1')",
+      "status": 0,
+      "tag": [
+        "tag1",
+        "tag2"
+      ],
+      "description": "This is script 1"
+    },
+    {
+      "name": "script2",
+      "code": "print('This is code 2')",
+      "status": 1,
+      "tag": [
+        "tag2",
+        "tag3"
+      ],
+      "description": "This is script 2"
+    },
+    {
+      "name": "script3",
+      "code": "print('This is code 3')",
+      "status": 2,
+      "tag": [
+        "tag1"
+      ],
+      "description": "This is script 3"
+    }
+  ],
+  "tag": [
+    {
+      "name": "tag1",
+      "description": "This is tag 1"
+    },
+    {
+      "name": "tag2",
+      "description": "This is tag 2"
+    },
+    {
+      "name": "tag3",
+      "description": "This is tag 3"
+    }
+  ]
+}

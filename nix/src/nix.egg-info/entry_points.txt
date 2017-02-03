@@ -1,0 +1,4 @@
+[console_scripts]
+nix = nix:main
+nixconfig = nixconfig:main
+

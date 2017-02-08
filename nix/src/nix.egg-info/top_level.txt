@@ -1,3 +1,0 @@
-command_line_config
-command_line_nix
-scripts

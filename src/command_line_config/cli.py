@@ -26,6 +26,8 @@ from command_line_config.cli_script_delete import CLIScriptDelete
 from command_line_config.cli_script_rename import CLIScriptRename
 from command_line_config.cli_script_run import CLIScriptRun
 from command_line_config.cli_script_show import CLIScriptShow
+from command_line_config.cli_script_tag_add import CLIScriptTagAdd
+from command_line_config.cli_script_tag_remove import CLIScriptTagRemove
 from command_line_config.cli_tag_create import CLITagCreate
 from command_line_config.cli_tag_delete import CLITagDelete
 from command_line_config.cli_tag_rename import CLITagRename
@@ -71,6 +73,10 @@ class CLI(object):
         CLIScriptRun(_subparser)
 
         CLIScriptShow(_subparser)
+
+        CLIScriptTagAdd(_subparser)
+
+        CLIScriptTagRemove(_subparser)
 
         CLITagCreate(_subparser)
 

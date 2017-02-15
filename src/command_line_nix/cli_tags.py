@@ -23,7 +23,8 @@ LOG = logging.getLogger(__name__)
 
 
 class CLITags(object):
-    """Object which defines the subparser for the tag command.
+    """
+    Command line subparser for displaying a list of available tags.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

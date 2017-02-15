@@ -23,7 +23,12 @@ LOG = logging.getLogger(__name__)
 
 
 class CLITagRename(object):
-    """Object which defines the subparser for the tag rename command.
+    """
+    Command line subparser for renaming an existing tag.
+    The following arguments can be interpreted by the subprocessor:
+
+    :Old Name: Current name of the tag.
+    :New Name: New name for the tag.  Must be unique from other tags as well as scripts.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

@@ -23,7 +23,12 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIShow(object):
-    """Object which defines the subparser for the show script command.
+    """
+    Command line subparser for showing the contents of a script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the script to show details for.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

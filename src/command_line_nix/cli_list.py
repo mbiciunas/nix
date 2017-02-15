@@ -23,7 +23,12 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIList(object):
-    """Object which defines the subparser for the list command.
+    """
+    Command line subparser for displaying a list of available scripts.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Tags: Optional list of tags to filter the list of scripts.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):
@@ -37,10 +42,6 @@ class CLIList(object):
 
         subparser = subparsers.add_parser('list',
                                           help='List available scripts')
-
-        # subparser.add_argument(type=str,
-        #                        help="Name of script",
-        #                        dest='script')
 
         subparser.add_argument(type=str,
                                help="Filter by tags",

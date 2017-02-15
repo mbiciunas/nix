@@ -23,7 +23,12 @@ LOG = logging.getLogger(__name__)
 
 
 class CLITagShow(object):
-    """Object which defines the subparser for the tag show command.
+    """
+    Command line subparser for showing details of a tag including what scripts are attached to it.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Tag: Name of the tag to show details for.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

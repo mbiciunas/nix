@@ -23,7 +23,14 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIScriptCreate(object):
-    """Object which defines the subparser for the new command.
+    """
+    Command line subparser for creatiing a new script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the script.  Must be unique from other scripts as well as tags.
+    :Description: Brief description of what the script will do.
+    :Tags: One or more tags to attach to the script.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

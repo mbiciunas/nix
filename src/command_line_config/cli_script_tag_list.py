@@ -23,8 +23,13 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIScriptTagList(object):
-    """Object which defines the subparser for the script-tag-list command.
     """
+    Command line subparser for listing the tags attached to a given script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the script to list tags for.
+   """
 
     def __init__(self, subparsers: argparse._SubParsersAction):
         """

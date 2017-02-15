@@ -23,7 +23,13 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIScriptTagRemove(object):
-    """Object which defines the subparser for the script-tag-remove command.
+    """
+    Command line subparser for removing a tag from a given script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the script to remove tags from.
+    :Tags: One or more tags to remove from the script.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

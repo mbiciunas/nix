@@ -23,7 +23,12 @@ LOG = logging.getLogger(__name__)
 
 
 class CLITagDelete(object):
-    """Object which defines the subparser for the tag delete command.
+    """
+    Command line subparser for deleting an existing tag.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the tag to delete.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

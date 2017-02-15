@@ -23,7 +23,13 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIScriptRename(object):
-    """Object which defines the subparser for the script command.
+    """
+    Command line subparser for renaming an existing script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Old Name: Current name of the script.
+    :New Name: New name for the script.  Must be unique from other scripts as well as tags.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

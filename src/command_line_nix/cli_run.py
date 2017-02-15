@@ -23,7 +23,13 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIRun(object):
-    """Object which defines the subparser for the new command.
+    """
+    Command line subparser for running a script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the script to run.
+    :Parameters: Optional parameters to be passed to the script.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):
@@ -46,11 +52,6 @@ class CLIRun(object):
                                help="parameters",
                                nargs='*',
                                dest='param')
-
-        # subparser.add_argument(type=str,
-        #                        help="Tags to apply to the new script",
-        #                        nargs='+',
-        #                        dest='tags')
 
         subparser.add_argument("--debug",
                                help="Include debug information in log file",

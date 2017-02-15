@@ -23,7 +23,12 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIScriptDelete(object):
-    """Object which defines the subparser for the delete script command.
+    """
+    Command line subparser for deleting an existing script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the script.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

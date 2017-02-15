@@ -23,7 +23,13 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIScriptTagAdd(object):
-    """Object which defines the subparser for the script-tag-add command.
+    """
+    Command line subparser for adding a tag to a given script.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the script to add the tags to.
+    :Tags: One or more tags to attach to the script.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):
@@ -43,7 +49,7 @@ class CLIScriptTagAdd(object):
                                dest='script')
 
         subparser.add_argument(type=str,
-                               help="Filter by tags",
+                               help="Tags to attach to script",
                                nargs='+',
                                dest='tags')
 

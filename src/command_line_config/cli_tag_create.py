@@ -23,7 +23,13 @@ LOG = logging.getLogger(__name__)
 
 
 class CLITagCreate(object):
-    """Object which defines the subparser for the new command.
+    """
+    Command line subparser for creatiing a new tag.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the tag.  Must be unique from other tags as well as scripts.
+    :Description: Brief description of what the tag is for.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

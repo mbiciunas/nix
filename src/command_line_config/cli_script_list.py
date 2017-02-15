@@ -23,7 +23,12 @@ LOG = logging.getLogger(__name__)
 
 
 class CLIScriptList(object):
-    """Object which defines the subparser for the new command.
+    """
+    Command line subparser for displaying a list of available scripts.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Tags: Optional list of tags to filter the list of scripts.
     """
 
     def __init__(self, subparsers: argparse._SubParsersAction):

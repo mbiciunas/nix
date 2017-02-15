@@ -26,7 +26,8 @@ LOG = logging.getLogger(__name__)
 
 
 class Nix(object):
-    """Object which defines the main entry to Nix configuration.
+    """
+    Object which defines the main entry to Nix configuration.
     """
 
     def __init__(self):

@@ -1,16 +1,12 @@
 from libnix.sys.sys import Sys
 from libnix.utility.print_table import PrintTable
 
-_sys = Sys()
-_users = _sys.get_user_users()
+_users = Sys.get_users(load=True)
 
 _rows = []
 
-
-_users.load()
-
 for _user_name in _users.get_users():
-    _user = _users.get_user(_user_name)
+    _user = _users.get_user_by_name(_user_name)
 
     _column = [_user.get_user(),
                _user.get_user_id(),

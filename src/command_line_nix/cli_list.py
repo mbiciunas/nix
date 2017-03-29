@@ -34,9 +34,10 @@ def add_subparser(subparsers: argparse._SubParsersAction):
     subparser = subparsers.add_parser('list',
                                       help='List available scripts')
 
-    subparser.add_argument(type=str,
+    subparser.add_argument("-t", "--tag",
+                           type=str,
                            help="Filter by tags",
-                           nargs='*',
+                           nargs='+',
                            dest='tags')
 
     subparser.set_defaults(func=_process)

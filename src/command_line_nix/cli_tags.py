@@ -22,42 +22,29 @@ from libnix.config.tag.list_tag import ListTag
 LOG = logging.getLogger(__name__)
 
 
-class CLITags(object):
+def add_subparser(subparsers: argparse._SubParsersAction):
     """
-    Command line subparser for displaying a list of available tags.
+    Add a command line subparser for displaying a list of available tags.
+
+    :param subparsers: Object that will contain the argument definitions.
+    :type subparsers: ArgumentParser
     """
+    LOG.debug("Define a cli parser for running scripts")
 
-    def __init__(self, subparsers: argparse._SubParsersAction):
-        """
+    subparser = subparsers.add_parser('tags',
+                                      help='List all tags.')
 
-        :param subparsers: Object that will contain the argument definitions.
-        :type subparsers: ArgumentParser
-        """
-        LOG.debug("Create instance of {}".format(self.__class__.__name__))
-        LOG.debug("Define a cli parser for running scripts")
+    subparser.set_defaults(func=_process)
 
-        subparser = subparsers.add_parser('tags',
-                                          help='List all tags.')
 
-        subparser.add_argument("--debug",
-                               help="Include debug information in log file",
-                               action='store_true',
-                               dest='debug')
+def _process(args):
+    """Process a command line action for displaying a list of available tags.
 
-        subparser.set_defaults(func=self._process)
+    :param args: Command line arguments
+    :type args: Namespace
+    """
+    LOG.info("Begin action to list the tags")
 
-    @staticmethod
-    def _process(args):
-        """Process a command line action for listing setup groups.
+    _list_tag = ListTag()
 
-        :param args: Command line arguments
-        :type args: Namespace
-        """
-        LOG.info("Begin action to list the tags")
-
-        if args.debug:
-            logging.getLogger().setLevel(level=logging.DEBUG)
-
-        _list_tag = ListTag()
-
-        _list_tag.list()
+    _list_tag.list()

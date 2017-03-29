@@ -22,56 +22,38 @@ from libnix.config.script.run_script import RunScript
 LOG = logging.getLogger(__name__)
 
 
-class CLIRun(object):
+def add_subparser(subparsers: argparse._SubParsersAction):
     """
-    Command line subparser for running a script.
+    Add a command line subparser for running a script.
 
-    The following arguments can be interpreted by the subprocessor:
-
-    :Name: Name of the script to run.
-    :Parameters: Optional parameters to be passed to the script.
+    :param subparsers: Object that will contain the argument definitions.
+    :type subparsers: ArgumentParser
     """
+    LOG.debug("Define a cli parser for running scripts")
 
-    def __init__(self, subparsers: argparse._SubParsersAction):
-        """
+    subparser = subparsers.add_parser('run',
+                                      help='Create a new script.')
 
-        :param subparsers: Object that will contain the argument definitions.
-        :type subparsers: ArgumentParser
-        """
-        LOG.debug("Create instance of {}".format(self.__class__.__name__))
-        LOG.debug("Define a cli parser for running scripts")
+    subparser.add_argument(type=str,
+                           help="Name of script",
+                           dest='script')
 
-        subparser = subparsers.add_parser('run',
-                                          help='Create a new script.')
+    subparser.add_argument(type=str,
+                           help="parameters",
+                           nargs='*',
+                           dest='param')
 
-        subparser.add_argument(type=str,
-                               help="Name of script",
-                               dest='script')
+    subparser.set_defaults(func=_process)
 
-        subparser.add_argument(type=str,
-                               help="parameters",
-                               nargs='*',
-                               dest='param')
 
-        subparser.add_argument("--debug",
-                               help="Include debug information in log file",
-                               action='store_true',
-                               dest='debug')
+def _process(args):
+    """Process a command line action for running a script.
 
-        subparser.set_defaults(func=self._process)
+    :param args: Command line arguments
+    :type args: Namespace
+    """
+    LOG.info("Begin action to create a new script")
 
-    @staticmethod
-    def _process(args):
-        """Process a command line action for listing setup groups.
+    _run_script = RunScript()
 
-        :param args: Command line arguments
-        :type args: Namespace
-        """
-        LOG.info("Begin action to create a new script")
-
-        if args.debug:
-            logging.getLogger().setLevel(level=logging.DEBUG)
-
-        _run_script = RunScript()
-
-        _run_script.run(args.script)
+    _run_script.run(args.script)

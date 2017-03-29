@@ -19,7 +19,7 @@
 import sys
 import logging.handlers
 
-from command_line_nix import cli
+from command_line_nix.cli import CLI
 from libnix.exception.nix_error import NixError
 
 LOG = logging.getLogger(__name__)
@@ -27,7 +27,7 @@ LOG = logging.getLogger(__name__)
 
 class Nix(object):
     """
-    Object which defines the main entry to Nix configuration.
+    Main entry to the Nix program.
     """
 
     def __init__(self):
@@ -37,7 +37,7 @@ class Nix(object):
 
         LOG.debug("Create instance of {}".format(self.__class__.__name__))
 
-        _cli = cli.CLI()
+        _cli = CLI()
 
         if len(sys.argv) == 1:
             _cli.print_help()

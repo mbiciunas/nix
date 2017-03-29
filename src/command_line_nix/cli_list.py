@@ -22,51 +22,34 @@ from libnix.config.script.list_script import ListScript
 LOG = logging.getLogger(__name__)
 
 
-class CLIList(object):
+def add_subparser(subparsers: argparse._SubParsersAction):
     """
-    Command line subparser for displaying a list of available scripts.
+    Add a command line subparser for displaying a list of available scripts.
 
-    The following arguments can be interpreted by the subprocessor:
-
-    :Tags: Optional list of tags to filter the list of scripts.
+    :param subparsers: Object that will contain the argument definitions.
+    :type subparsers: ArgumentParser
     """
+    LOG.debug("Define a cli parser for listing scripts")
 
-    def __init__(self, subparsers: argparse._SubParsersAction):
-        """
+    subparser = subparsers.add_parser('list',
+                                      help='List available scripts')
 
-        :param subparsers: Object that will contain the argument definitions.
-        :type subparsers: ArgumentParser
-        """
-        LOG.debug("Create instance of {}".format(self.__class__.__name__))
-        LOG.debug("Define a cli parser for listing scripts")
+    subparser.add_argument(type=str,
+                           help="Filter by tags",
+                           nargs='*',
+                           dest='tags')
 
-        subparser = subparsers.add_parser('list',
-                                          help='List available scripts')
+    subparser.set_defaults(func=_process)
 
-        subparser.add_argument(type=str,
-                               help="Filter by tags",
-                               nargs='*',
-                               dest='tags')
 
-        subparser.add_argument("--debug",
-                               help="Include debug information in log file",
-                               action='store_true',
-                               dest='debug')
+def _process(args):
+    """Process a command line action for displaying a list of available scripts.
 
-        subparser.set_defaults(func=self._process)
+    :param args: Command line arguments
+    :type args: Namespace
+    """
+    LOG.info("Begin action to list available scripts")
 
-    @staticmethod
-    def _process(args):
-        """Process a command line action for listing setup groups.
+    _list_script = ListScript()
 
-        :param args: Command line arguments
-        :type args: Namespace
-        """
-        LOG.info("Begin action to list available scripts")
-
-        if args.debug:
-            logging.getLogger().setLevel(level=logging.DEBUG)
-
-        _list_script = ListScript()
-
-        _list_script.list(args.tags)
+    _list_script.list(args.tags)

@@ -19,8 +19,8 @@
 import sys
 import logging.handlers
 
-from command_line_nix.cli import CLI
-from libnix.exception.nix_error import NixError
+from cli_nix.cli import CLI
+from exception.nix_error import NixError
 
 LOG = logging.getLogger(__name__)
 

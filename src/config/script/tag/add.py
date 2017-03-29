@@ -14,30 +14,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.1.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+import typing
+from config.config import Config
+from exception.nix_error import NixError
 
 
-)
+class Add:
+    def __init__(self):
+        self._config = Config()
+        self._tags = self._config.get_tags()
+
+    def add(self, script: str, tags: typing.List[str]):
+        _script = self._config.get_scripts().find_by_name(script)
+
+        if _script is None:
+            raise NixError("Script not found: {}".format(script))
+
+        _invalid_tags = self._config.get_tags().get_invalid_tags(tags)
+
+        if len(_invalid_tags) is not 0:
+            raise NixError("Unknown tags: {}".format(' '.join(_invalid_tags)))
+
+        _script.add_tags(tags)
+
+        self._config.write()

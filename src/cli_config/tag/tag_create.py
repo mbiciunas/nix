@@ -1,4 +1,4 @@
-# Nix
+# NixConfig
 # Copyright (c) 2017  Mark Biciunas.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,38 +17,47 @@
 import argparse
 import logging
 
-from libnix.config.script.show_script import ShowScript
+from config.tag.create_tag import CreateTag
 
 LOG = logging.getLogger(__name__)
 
 
-def add_subparser(subparsers: argparse._SubParsersAction):
+def init(subparsers: argparse._SubParsersAction):
     """
-    Add a command line subparser for showing the contents of a script.
+    Command line subparser for creatiing a new tag.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Name: Name of the tag.  Must be unique from other tags as well as scripts.
+    :Description: Brief description of what the tag is for.
 
     :param subparsers: Object that will contain the argument definitions.
     :type subparsers: ArgumentParser
     """
-    LOG.debug("Define a cli parser for showing scripts")
+    LOG.debug("Initialize subparser for the tag-create command")
 
-    subparser = subparsers.add_parser('show',
-                                      help='Show the contents of a script.')
+    subparser = subparsers.add_parser('create',
+                                      help='Create a tag.')
 
     subparser.add_argument(type=str,
-                           help="Name of script",
-                           dest='script')
+                           help="Name of new tag",
+                           dest='tag')
+
+    subparser.add_argument(type=str,
+                           help="Description",
+                           dest='desc')
 
     subparser.set_defaults(func=_process)
 
 
 def _process(args):
-    """Process a command line action for showing the contents of a script.
+    """Process a command line action for listing scripts.
 
     :param args: Command line arguments
     :type args: Namespace
     """
-    LOG.info("Begin action to create a new script")
+    LOG.info("Begin action to create a tag")
 
-    _show_script = ShowScript()
+    _create_tag = CreateTag()
 
-    _show_script.show(args.script)
+    _create_tag.create(args.tag, args.desc)

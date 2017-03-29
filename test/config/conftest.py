@@ -14,30 +14,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import pytest
 
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.1.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+from ..setup.setup_config_empty import SetupConfigEmpty
+from ..setup.setup_config_valid import SetupConfigValid
 
 
-)
+@pytest.fixture()
+def config_empty():
+    _setup_config = SetupConfigEmpty()
+    _setup_config.set_count_tags(0)
+    _setup_config.set_count_scripts(0)
+
+    return _setup_config
+
+
+@pytest.fixture()
+def config_valid():
+    _setup_config = SetupConfigValid()
+    _setup_config.set_count_tags(3)
+    _setup_config.set_count_scripts(3)
+
+    return _setup_config

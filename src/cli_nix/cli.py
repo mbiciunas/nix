@@ -17,10 +17,10 @@
 import argparse
 import logging
 
-from command_line_nix import cli_run
-from command_line_nix import cli_tags
-from command_line_nix import cli_list
-from command_line_nix import cli_show
+from cli_nix import cli_run
+from cli_nix import cli_tags
+from cli_nix import cli_list
+from cli_nix import cli_show
 
 LOG = logging.getLogger(__name__)
 

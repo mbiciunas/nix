@@ -1,4 +1,4 @@
-# Nix
+# NixConfig
 # Copyright (c) 2017  Mark Biciunas.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,34 +17,44 @@
 import argparse
 import logging
 
-from libnix.config.tag.list_tag import ListTag
+from config.script.list_script import ListScript
 
 LOG = logging.getLogger(__name__)
 
 
-def add_subparser(subparsers: argparse._SubParsersAction):
+def init(subparsers: argparse._SubParsersAction):
     """
-    Add a command line subparser for displaying a list of available tags.
+    Command line subparser for displaying a list of available scripts.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Tags: Optional list of tags to filter the list of scripts.
 
     :param subparsers: Object that will contain the argument definitions.
     :type subparsers: ArgumentParser
     """
-    LOG.debug("Define a cli parser for running scripts")
+    LOG.debug("Initialize subparser for the list command")
 
-    subparser = subparsers.add_parser('tags',
-                                      help='List all tags.')
+    subparser = subparsers.add_parser('list',
+                                      help='List scripts.')
+
+    subparser.add_argument("-t", "--tag",
+                           type=str,
+                           help="Filter by tags",
+                           nargs='*',
+                           dest='tags')
 
     subparser.set_defaults(func=_process)
 
 
 def _process(args):
-    """Process a command line action for displaying a list of available tags.
+    """Process a command line action for listing scripts.
 
     :param args: Command line arguments
     :type args: Namespace
     """
-    LOG.info("Begin action to list the tags")
+    LOG.info("Begin action to list scripts")
 
-    _list_tag = ListTag()
+    _list_script = ListScript()
 
-    _list_tag.list()
+    _list_script.list(args.tags)

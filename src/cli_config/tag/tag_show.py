@@ -1,4 +1,4 @@
-# Nix
+# NixConfig
 # Copyright (c) 2017  Mark Biciunas.
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,43 +17,42 @@
 import argparse
 import logging
 
-from libnix.config.script.run_script import RunScript
+from config.tag.show_tag import ShowTag
 
 LOG = logging.getLogger(__name__)
 
 
-def add_subparser(subparsers: argparse._SubParsersAction):
+def init(subparsers: argparse._SubParsersAction):
     """
-    Add a command line subparser for running a script.
+    Command line subparser for showing details of a tag including what scripts are attached to it.
+
+    The following arguments can be interpreted by the subprocessor:
+
+    :Tag: Name of the tag to show details for.
 
     :param subparsers: Object that will contain the argument definitions.
     :type subparsers: ArgumentParser
     """
-    LOG.debug("Define a cli parser for running scripts")
+    LOG.debug("Initialize subparser for the tag-show command")
 
-    subparser = subparsers.add_parser('run',
-                                      help='Create a new script.')
-
-    subparser.add_argument(type=str,
-                           help="Name of script",
-                           dest='script')
+    subparser = subparsers.add_parser('show',
+                                      help='Show tag details.')
 
     subparser.add_argument(type=str,
-                           help="parameters",
-                           nargs='*',
-                           dest='param')
+                           help="Name of tag",
+                           dest='tag')
 
     subparser.set_defaults(func=_process)
 
 
 def _process(args):
-    """Process a command line action for running a script.
+    """Process a command line action for listing scripts.
 
     :param args: Command line arguments
     :type args: Namespace
     """
-    LOG.info("Begin action to create a new script")
+    LOG.info("Begin action to show tag")
 
-    _run_script = RunScript()
+    _show_tag = ShowTag()
 
-    _run_script.run(args.script)
+    _show_tag.show(args.tag)

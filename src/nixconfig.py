@@ -19,14 +19,20 @@
 import sys
 import logging.handlers
 
-from command_line_config import cli
-from libnix.exception.nix_error import NixError
+from cli_config import cli
+from exception.nix_error import NixError
 
 LOG = logging.getLogger(__name__)
 
 
 class NixConfig(object):
     """Object which defines the main entry to Nix configuration.
+
+
+    .. argparse::
+        :module: cli.cli
+        :func: make_parser
+        :prog: NixConfig
     """
 
     def __init__(self):
@@ -36,18 +42,13 @@ class NixConfig(object):
 
         LOG.debug("Create instance of {}".format(self.__class__.__name__))
 
-        _cli = cli.CLI()
-
-        if len(sys.argv) == 1:
-            _cli.print_help()
-            sys.exit(1)
-
         try:
-            _cli.start_parser()
+            self._parser = cli.make_parser(sys.argv)
         except NixError as _error:
             print("Error: {}".format(_error.get_message()), file=sys.stderr)
             if _error.get_exception() is not None:
                 print("Original error: {}".format(_error.get_exception()), file=sys.stderr)
+
             sys.exit(1)
 
     # @staticmethod

@@ -14,30 +14,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.1.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+from config.config import Config
+from exception.nix_error import NixError
 
 
-)
+class CreateTag:
+    def __init__(self):
+        self._config = Config()
+        self._tags = self._config.get_tags()
+
+    def create(self, tag: str, description: str):
+        if self._tags.exist(tag):
+            raise NixError("Tag already exists: {}".format(tag))
+
+        _tag = self._tags.insert()
+        _tag.set_name(tag)
+        _tag.set_desc(description)
+
+        self._config.write()

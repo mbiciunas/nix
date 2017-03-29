@@ -14,30 +14,33 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from shutil import copyfile
 
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.1.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+from config.config import Config
 
 
-)
+class SetupConfig:
+    _PATH_DST = "/home/mbiciunas/.nix/script/tag.json"
+
+    _config = None
+    _count_tags = None
+    _count_scripts = None
+
+    def __init__(self, source_file):
+        copyfile(source_file, self._PATH_DST)
+        self._config = Config()
+
+    def config(self):
+        return self._config
+
+    def set_count_tags(self, count):
+        self._count_tags = count
+
+    def get_count_tags(self):
+        return self._count_tags
+
+    def set_count_scripts(self, count):
+        self._count_scripts = count
+
+    def get_count_scripts(self):
+        return self._count_scripts

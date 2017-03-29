@@ -14,30 +14,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.1.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+from config.tag.list_tag import ListTag
 
 
-)
+class TestListTag:
+    def test_list(self, config_valid, capsys):
+        _list_tag = ListTag()
+
+        _list_tag.list()
+
+        out, err = capsys.readouterr()
+
+        assert config_valid.TAG_VALID_1 in out
+        assert config_valid.TAG_VALID_2 in out
+        assert len(err) == 0

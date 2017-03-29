@@ -15,29 +15,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.1.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+class Error(Exception):
+    """Base class for exceptions in this module."""
+    pass
 
 
-)
+class NixError(Error):
+    def __init__(self, message: str, exception: Exception=None):
+        self._message = message
+        self._exception = exception
+
+    def get_message(self) -> str:
+        return self._message
+
+    def get_exception(self) -> Exception:
+        return self._exception

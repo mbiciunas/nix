@@ -18,7 +18,7 @@ import pytest
 
 from config.config_script import ConfigScript
 from config.config_scripts import ConfigScripts
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class TestConfigScripts:

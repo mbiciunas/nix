@@ -90,7 +90,8 @@ class SetupConfigValid:
     def config(self):
         return self._config
 
-    def get_pid(self):
+    @staticmethod
+    def get_pid():
         return os.getpid()
 
     def set_count_tags(self, count: int):

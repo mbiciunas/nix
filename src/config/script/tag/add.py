@@ -15,8 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import typing
+
 from config.config import Config
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class Add:

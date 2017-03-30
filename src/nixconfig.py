@@ -16,11 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
 import logging.handlers
+import sys
 
 from cli_config import cli
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 LOG = logging.getLogger(__name__)
 

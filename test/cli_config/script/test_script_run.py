@@ -1,8 +1,7 @@
 import pytest
 
-from exception.nix_error import NixError
-
 from cli_config.script import script
+from utility.nix_error import NixError
 
 
 def test_script_run_no_script(capsys):

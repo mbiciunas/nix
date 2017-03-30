@@ -1,8 +1,7 @@
 import pytest
 
-from exception.nix_error import NixError
-
 from cli_config.script_tag import script_tag
+from utility.nix_error import NixError
 
 
 def test_script_tag_add_no_script(capsys):

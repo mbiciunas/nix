@@ -17,7 +17,7 @@
 import pytest
 
 from config.script.run_script import RunScript
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class TestRunScript:

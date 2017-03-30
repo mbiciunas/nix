@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from config.config import Config
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class CreateScript:

@@ -17,7 +17,7 @@
 import typing
 
 from config.config_tag import ConfigTag
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class ConfigTags:

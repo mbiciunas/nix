@@ -17,7 +17,7 @@
 import typing
 
 from config.config_script import ConfigScript
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class ConfigScripts:

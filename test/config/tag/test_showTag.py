@@ -17,7 +17,7 @@
 import pytest
 
 from config.tag.show_tag import ShowTag
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class TestShowTag:

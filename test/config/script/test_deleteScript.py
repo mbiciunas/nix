@@ -16,9 +16,9 @@
 
 import pytest
 
-from config.script.delete_script import DeleteScript
 from config.config import Config
-from exception.nix_error import NixError
+from config.script.delete_script import DeleteScript
+from utility.nix_error import NixError
 
 
 class TestDeleteScript:

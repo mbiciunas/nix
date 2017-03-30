@@ -15,8 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from config.config import Config
+from utility.nix_error import NixError
 from utility.print_table import PrintTable
-from exception.nix_error import NixError
 
 
 class List:

@@ -17,7 +17,7 @@
 import pytest
 
 from config.script.rename_script import RenameScript
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class TestRenameScript:

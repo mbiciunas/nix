@@ -18,7 +18,7 @@ import pytest
 
 from config.config_tag import ConfigTag
 from config.config_tags import ConfigTags
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class TestConfigTags:

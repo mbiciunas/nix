@@ -1,7 +1,3 @@
-import pytest
-
-from exception.nix_error import NixError
-
 from cli_config.tag import tag
 
 

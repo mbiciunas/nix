@@ -1,8 +1,7 @@
 import pytest
 
-from exception.nix_error import NixError
-
 from cli_config.tag import tag
+from utility.nix_error import NixError
 
 
 def test_tag_delete_no_tag(capsys):

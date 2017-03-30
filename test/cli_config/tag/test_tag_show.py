@@ -1,8 +1,7 @@
 import pytest
 
-from exception.nix_error import NixError
-
 from cli_config.tag import tag
+from utility.nix_error import NixError
 
 
 def test_tag_show_no_tag(capsys):
@@ -33,5 +32,5 @@ def test_tag_show_good_tag(capsys):
 
     assert "script1" in _out, "'script1' should be in output"
     assert "script2" in _out, "'script2' should be in output"
-    assert "script3"  not in _out, "'script2' should be in output"
+    assert "script3" not in _out, "'script2' should be in output"
     assert len(_err) is 0, "StdErr should be empty, contains: {}".format(_err)

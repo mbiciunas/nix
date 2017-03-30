@@ -18,7 +18,7 @@ import pytest
 
 from config.config import Config
 from config.tag.create_tag import CreateTag
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class TestCreateTag:

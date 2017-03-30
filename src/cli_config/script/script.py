@@ -18,17 +18,16 @@ import argparse
 import logging
 import typing
 
-from exception.nix_error import NixError
-
 from cli_config.script import script_create
-from cli_config.script import script_export
 from cli_config.script import script_delete
+from cli_config.script import script_export
 from cli_config.script import script_import
 from cli_config.script import script_list
 from cli_config.script import script_rename
 from cli_config.script import script_run
 from cli_config.script import script_show
 from cli_config.script import script_update
+from utility.nix_error import NixError
 
 LOG = logging.getLogger(__name__)
 

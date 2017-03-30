@@ -17,7 +17,7 @@
 import typing
 
 from config.config import Config
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 from utility.print_table import PrintTable
 
 

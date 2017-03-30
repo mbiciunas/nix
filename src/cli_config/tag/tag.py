@@ -18,13 +18,12 @@ import argparse
 import logging
 import typing
 
-from exception.nix_error import NixError
-
 from cli_config.tag import tag_create
+from cli_config.tag import tag_delete
 from cli_config.tag import tag_list
 from cli_config.tag import tag_rename
 from cli_config.tag import tag_show
-from cli_config.tag import tag_delete
+from utility.nix_error import NixError
 
 LOG = logging.getLogger(__name__)
 

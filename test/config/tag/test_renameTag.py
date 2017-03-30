@@ -17,7 +17,7 @@
 import pytest
 
 from config.tag.rename_tag import RenameTag
-from exception.nix_error import NixError
+from utility.nix_error import NixError
 
 
 class TestRenameTag:

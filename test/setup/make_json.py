@@ -15,14 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
+import typing
 
 
 class MakeJson:
-    def __init__(self):
+    def __init__(self) -> None:
         self._scripts = []
         self._tags = []
 
-    def add_script(self, name: str, desc: str, code: str, status: int, tags: list):
+    def add_script(self, name: str, desc: str, code: str, status: int, tags: typing.List[str]) -> None:
         _tags = "["
         for _tag in tags[:-1]:
             _tags += "\"" + _tag + "\","
@@ -40,7 +41,7 @@ class MakeJson:
 
         self._scripts.append(_script)
 
-    def add_tag(self, name: str, desc: str):
+    def add_tag(self, name: str, desc: str) -> None:
         _tag = ""
         _tag += '    {'
         _tag += '      "name": "' + name + '",'
@@ -49,7 +50,7 @@ class MakeJson:
 
         self._tags.append(_tag)
 
-    def make(self):
+    def make(self) -> str:
         _json = ""
         _json += '{'
         _json += '  "script": ['

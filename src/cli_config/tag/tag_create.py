@@ -36,18 +36,18 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the tag-create command")
 
-    subparser = subparsers.add_parser('create',
-                                      help='Create a tag.')
+    _subparser = subparsers.add_parser('create',
+                                       help='Create a tag.')
 
-    subparser.add_argument(type=str,
-                           help="Name of new tag",
-                           dest='tag')
+    _subparser.add_argument(type=str,
+                            help="Name of new tag",
+                            dest='tag')
 
-    subparser.add_argument(type=str,
-                           help="Description",
-                           dest='desc')
+    _subparser.add_argument(type=str,
+                            help="Description",
+                            dest='desc')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

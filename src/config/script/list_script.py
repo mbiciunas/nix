@@ -22,10 +22,10 @@ from utility.print_table import PrintTable
 
 
 class ListScript:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
 
-    def list(self, tags: typing.List[str] = list()):
+    def list(self, tags: typing.List[str] = list()) -> None:
         if tags is None:
             tags = list()
 

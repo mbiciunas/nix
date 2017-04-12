@@ -35,16 +35,16 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the list command")
 
-    subparser = subparsers.add_parser('list',
-                                      help='List scripts.')
+    _subparser = subparsers.add_parser('list',
+                                       help='List scripts.')
 
-    subparser.add_argument("-t", "--tag",
-                           type=str,
-                           help="Filter by tags",
-                           nargs='*',
-                           dest='tags')
+    _subparser.add_argument("-t", "--tag",
+                            type=str,
+                            help="Filter by tags",
+                            nargs='*',
+                            dest='tags')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

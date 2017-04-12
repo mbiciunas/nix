@@ -35,14 +35,14 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the tag-delete command")
 
-    subparser = subparsers.add_parser('delete',
-                                      help='Delete a tag.')
+    _subparser = subparsers.add_parser('delete',
+                                       help='Delete a tag.')
 
-    subparser.add_argument(type=str,
-                           help="Name of tag",
-                           dest='tag')
+    _subparser.add_argument(type=str,
+                            help="Name of tag",
+                            dest='tag')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

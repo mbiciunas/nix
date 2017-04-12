@@ -35,18 +35,18 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the tag-rename command")
 
-    subparser = subparsers.add_parser('rename',
-                                      help='Rename a tag.')
+    _subparser = subparsers.add_parser('rename',
+                                       help='Rename a tag.')
 
-    subparser.add_argument(type=str,
-                           help="Current tag name",
-                           dest='tag')
+    _subparser.add_argument(type=str,
+                            help="Current tag name",
+                            dest='tag')
 
-    subparser.add_argument(type=str,
-                           help="New tag name",
-                           dest='tag_new')
+    _subparser.add_argument(type=str,
+                            help="New tag name",
+                            dest='tag_new')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

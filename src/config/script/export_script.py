@@ -19,12 +19,12 @@ from utility.nix_error import NixError
 
 
 class ExportScript:
-    def __init__(self, name, path):
+    def __init__(self, name: str, path: str) -> None:
         self._config = Config()
         self._name = name
         self._path = path
 
-    def export(self):
+    def export(self) -> None:
         _script = self._config.get_scripts().find_by_name(self._name)
 
         if _script is None:
@@ -37,7 +37,7 @@ class ExportScript:
         # self._config.write()
 
     @staticmethod
-    def _make_content(script):
+    def _make_content(script) -> str:
         _content = ""
         _content += "#nix_name={}\n".format(script.get_name())
         _content += "#nix_desc={}\n".format(script.get_desc())
@@ -47,6 +47,6 @@ class ExportScript:
 
         return _content
 
-    def _write(self, contents: str):
+    def _write(self, contents: str) -> None:
         with open(self._path, 'w') as _file:
             _file.write(contents)

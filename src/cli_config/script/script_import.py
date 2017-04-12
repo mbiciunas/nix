@@ -35,14 +35,14 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the import command")
 
-    subparser = subparsers.add_parser('import',
-                                      help='Import a script.')
+    _subparser = subparsers.add_parser('import',
+                                       help='Import a script.')
 
-    subparser.add_argument(type=str,
-                           help="Name of import file",
-                           dest='path')
+    _subparser.add_argument(type=str,
+                            help="Name of import file",
+                            dest='path')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

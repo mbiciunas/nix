@@ -19,11 +19,11 @@ from utility.nix_error import NixError
 
 
 class DeleteTag:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
         self._tags = self._config.get_tags()
 
-    def delete(self, tag: str):
+    def delete(self, tag: str) -> None:
         if not self._tags.exist(tag):
             raise NixError("Unknown tag: {}".format(tag))
 

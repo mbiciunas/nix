@@ -19,11 +19,11 @@ from utility.print_table import PrintTable
 
 
 class ListTag:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
         self._tags = self._config.get_tags()
 
-    def list(self):
+    def list(self) -> None:
         _rows = []
 
         for _tag in self._tags.list():

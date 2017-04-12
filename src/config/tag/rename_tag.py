@@ -19,12 +19,12 @@ from utility.nix_error import NixError
 
 
 class RenameTag:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
         self._tags = self._config.get_tags()
         self._scripts = self._config.get_scripts()
 
-    def rename(self, tag: str, tag_new: str):
+    def rename(self, tag: str, tag_new: str) -> None:
         if tag == tag_new:
             raise NixError("Original and new tag names are the same: {}".format(tag_new))
 

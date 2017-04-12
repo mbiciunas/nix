@@ -19,11 +19,11 @@ from utility.nix_error import NixError
 
 
 class UpdateScript:
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         self._config = Config()
         self._name = name
 
-    def update(self):
+    def update(self) -> None:
         _script = self._config.get_scripts().find_by_name(self._name)
 
         if _script is None:
@@ -41,13 +41,3 @@ class UpdateScript:
             _script.set_status(_script.STATUS_COMPILE_ERROR)
 
         self._config.write()
-
-
-def main():
-    update_script = UpdateScript("my_processes")
-
-    update_script.update()
-
-
-if __name__ == "__main__":
-    main()

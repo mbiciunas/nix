@@ -20,11 +20,11 @@ from utility.print_table import PrintTable
 
 
 class ShowTag:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
         self._tags = self._config.get_tags()
 
-    def show(self, tag: str):
+    def show(self, tag: str) -> None:
         if not self._tags.exist(tag):
             raise NixError("Unknown tag: {}".format(tag))
 
@@ -35,7 +35,6 @@ class ShowTag:
                           _script.get_desc(),
                           ' '.join(_script.get_tags()),
                           _script.get_status()])
-            # print("{}".format(_script.get_name()))
 
         _print_table = PrintTable("Script", "desc", "tags", "status")
         _print_table.add_data(_rows)

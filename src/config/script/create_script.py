@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import typing
+
 from config.config import Config
 from utility.nix_error import NixError
 
@@ -25,16 +27,13 @@ class CreateScript:
     TEMPLATE += "_processes = Processes()\n"
     TEMPLATE += "\n"
 
-    def __init__(self, name, desc, tags):
+    def __init__(self, name: str, desc: str, tags: typing.List[str]) -> None:
         self._config = Config()
         self._name = name
         self._desc = desc
-        self._tags = tags
+        self._tags = tags if tags is not None else list()
 
-    def create(self):
-        if self._tags is None:
-            self._tags = list()
-
+    def create(self) -> None:
         _invalid_tags = self._config.get_tags().get_invalid_tags(self._tags)
 
         if len(_invalid_tags) is not 0:
@@ -60,13 +59,3 @@ class CreateScript:
             _script.set_status(_script.STATUS_COMPILE_ERROR)
 
         self._config.write()
-
-
-def main():
-    create_script = CreateScript("my_processes", "new test process", ["test", "test1"])
-
-    create_script.create()
-
-
-if __name__ == "__main__":
-    main()

@@ -35,24 +35,24 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the create command")
 
-    subparser = subparsers.add_parser('create',
-                                      help='Create a new script.')
+    _subparser = subparsers.add_parser('create',
+                                       help='Create a new script.')
 
-    subparser.add_argument(type=str,
-                           help="Name of new script",
-                           dest='name')
+    _subparser.add_argument(type=str,
+                            help="Name of new script",
+                            dest='name')
 
-    subparser.add_argument(type=str,
-                           help="Description",
-                           dest='desc')
+    _subparser.add_argument(type=str,
+                            help="Description",
+                            dest='desc')
 
-    subparser.add_argument("-t", "--tag",
-                           type=str,
-                           help="Tags to apply to the new script",
-                           nargs='+',
-                           dest='tags')
+    _subparser.add_argument("-t", "--tag",
+                            type=str,
+                            help="Tags to apply to the new script",
+                            nargs='+',
+                            dest='tags')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

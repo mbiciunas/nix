@@ -35,14 +35,14 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the script_tag-list command")
 
-    subparser = subparsers.add_parser('list',
-                                      help='List the tags attached to a script.')
+    _subparser = subparsers.add_parser('list',
+                                       help='List the tags attached to a script.')
 
-    subparser.add_argument(type=str,
-                           help="Name of script",
-                           dest='script')
+    _subparser.add_argument(type=str,
+                            help="Name of script",
+                            dest='script')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

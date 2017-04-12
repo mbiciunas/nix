@@ -21,7 +21,7 @@ from utility.nix_error import NixError
 
 
 class ConfigScripts:
-    def __init__(self):
+    def __init__(self) -> None:
         self._scripts = []
 
     def exist(self, name: str) -> bool:
@@ -37,7 +37,7 @@ class ConfigScripts:
 
         return _script
 
-    def delete(self, name: str):
+    def delete(self, name: str) -> None:
         _delete = False
 
         for _script in self._scripts:
@@ -97,7 +97,7 @@ class ConfigScripts:
 
         return _export
 
-    def import_data(self, _data: list):
+    def import_data(self, _data: typing.List[dict]) -> None:
         for _script_data in _data:
             _script = ConfigScript()
 

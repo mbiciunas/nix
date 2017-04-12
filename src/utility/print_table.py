@@ -14,33 +14,35 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import typing
+
 
 class PrintTable(object):
-    def __init__(self, *args):
+    def __init__(self, *args) -> None:
         self._data = [list(args)]
         self._max_column = len(args)
         self._titles = args
-        self.width_column = [0] * self._max_column
+        self._width_column = [0] * self._max_column
 
-    def add_data(self, data: list):
+    def add_data(self, data: typing.List[str]) -> None:
         # convert all the data points to string before saving data
         self._data.extend([[column if isinstance(column, str) else str(column) for column in row] for row in data])
 
         self._calc_width()
 
-    def print(self):
-        for _index in range(0, len(self.width_column)):
-            print("+-{0:{1}}-".format("-" * self.width_column[_index], self.width_column[_index]), end="")
+    def print(self) -> None:
+        for _index in range(0, len(self._width_column)):
+            print("+-{0:{1}}-".format("-" * self._width_column[_index], self._width_column[_index]), end="")
 
         print("+")
 
         for _index in range(0, len(self._titles)):
-            print("| {0:{1}} ".format(self._titles[_index], self.width_column[_index]), end="")
+            print("| {0:{1}} ".format(self._titles[_index], self._width_column[_index]), end="")
 
         print("|")
 
-        for _index in range(0, len(self.width_column)):
-            print("+-{0:{1}}-".format("-" * self.width_column[_index], self.width_column[_index]), end="")
+        for _index in range(0, len(self._width_column)):
+            print("+-{0:{1}}-".format("-" * self._width_column[_index], self._width_column[_index]), end="")
 
         print("+")
 
@@ -70,22 +72,22 @@ class PrintTable(object):
             for _index_line in range(0, _max_sub_row):
                 for _index_row in range(0, len(_split_row)):
                     print("| {0:{1}} ".format(_split_row[_index_row][_index_line],
-                                              self.width_column[_index_row]), end="")
+                                              self._width_column[_index_row]), end="")
 
                 print("|")
 
-        for _index in range(0, len(self.width_column)):
-            print("+-{0:{1}}-".format("-" * self.width_column[_index], self.width_column[_index]), end="")
+        for _index in range(0, len(self._width_column)):
+            print("+-{0:{1}}-".format("-" * self._width_column[_index], self._width_column[_index]), end="")
 
         print("+")
 
-    def _calc_width(self):
+    def _calc_width(self) -> None:
         for _row in self._data:
             for _index in range(0, self._max_column):
                 _width = self._calc_width_item(_row[_index])
 
-                if _width > self.width_column[_index]:
-                    self.width_column[_index] = _width
+                if _width > self._width_column[_index]:
+                    self._width_column[_index] = _width
 
     @staticmethod
     def _calc_width_item(item) -> int:

@@ -21,11 +21,11 @@ from utility.nix_error import NixError
 
 
 class Delete:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
         self._tags = self._config.get_tags()
 
-    def delete(self, script: str, tags: typing.List[str]):
+    def delete(self, script: str, tags: typing.List[str]) -> None:
         _script = self._config.get_scripts().find_by_name(script)
 
         if _script is None:

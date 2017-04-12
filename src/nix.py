@@ -30,7 +30,7 @@ class Nix(object):
     Main entry to the Nix program.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         """
         # self.init_log()

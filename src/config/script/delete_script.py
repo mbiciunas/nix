@@ -19,10 +19,10 @@ from utility.nix_error import NixError
 
 
 class DeleteScript:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
 
-    def delete(self, name: str):
+    def delete(self, name: str) -> None:
         _script = self._config.get_scripts().find_by_name(name)
 
         if _script is None:

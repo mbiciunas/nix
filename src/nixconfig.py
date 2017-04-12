@@ -35,7 +35,7 @@ class NixConfig(object):
         :prog: NixConfig
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         """
         # self.init_log()

@@ -31,10 +31,10 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the tag-list command")
 
-    subparser = subparsers.add_parser('list',
-                                      help='List tags.')
+    _subparser = subparsers.add_parser('list',
+                                       help='List tags.')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

@@ -18,10 +18,10 @@ from config.config import Config
 
 
 class RunScript:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
 
-    def run(self, name: str):
+    def run(self, name: str) -> None:
         _script = self._config.get_scripts().find_by_name(name)
 
         try:

@@ -31,10 +31,10 @@ def add_subparser(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Define a cli parser for running scripts")
 
-    subparser = subparsers.add_parser('tags',
-                                      help='List all tags.')
+    _subparser = subparsers.add_parser('tags',
+                                       help='List all tags.')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

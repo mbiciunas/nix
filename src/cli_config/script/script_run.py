@@ -35,14 +35,14 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the run command")
 
-    subparser = subparsers.add_parser('run',
-                                      help='Run a script.')
+    _subparser = subparsers.add_parser('run',
+                                       help='Run a script.')
 
-    subparser.add_argument(type=str,
-                           help="Name of script",
-                           dest='name')
+    _subparser.add_argument(type=str,
+                            help="Name of script",
+                            dest='name')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

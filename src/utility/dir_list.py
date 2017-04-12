@@ -22,11 +22,9 @@ from utility.dir import Dir
 
 class DirList:
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     @staticmethod
     def get_services() -> typing.List[str]:
-        _top_dir = Dir.get_nix()
-
-        return os.listdir(_top_dir)
+        return os.listdir(Dir.get_nix())

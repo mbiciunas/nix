@@ -21,7 +21,7 @@ from utility.nix_error import NixError
 
 
 class ConfigTags:
-    def __init__(self):
+    def __init__(self) -> None:
         self._tags = []
 
     def exist(self, name: str) -> bool:
@@ -31,7 +31,7 @@ class ConfigTags:
             return False
         # return True if self.find(name) is not None else False
 
-    def get_invalid_tags(self, tags: list) -> typing.List[str]:
+    def get_invalid_tags(self, tags: typing.List[str]) -> typing.List[str]:
         # Use set to remove any duplicate tags
         _invalid_tags = []
         _new_tags = list(set(tags))
@@ -50,7 +50,7 @@ class ConfigTags:
 
         return _tag
 
-    def delete(self, name: str):
+    def delete(self, name: str) -> None:
         _delete = False
 
         for _tag in self._tags:
@@ -80,7 +80,7 @@ class ConfigTags:
 
         return _export
 
-    def import_data(self, _data: typing.List[dict]):
+    def import_data(self, _data: typing.List[dict]) -> None:
         for _tag_data in _data:
             _tag = ConfigTag()
 

@@ -36,18 +36,18 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the rename command")
 
-    subparser = subparsers.add_parser('rename',
-                                      help='Rename a script.')
+    _subparser = subparsers.add_parser('rename',
+                                       help='Rename a script.')
 
-    subparser.add_argument(type=str,
-                           help="Current name",
-                           dest='name')
+    _subparser.add_argument(type=str,
+                            help="Current name",
+                            dest='name')
 
-    subparser.add_argument(type=str,
-                           help="New name",
-                           dest='name_new')
+    _subparser.add_argument(type=str,
+                            help="New name",
+                            dest='name_new')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

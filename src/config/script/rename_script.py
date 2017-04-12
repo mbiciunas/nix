@@ -19,10 +19,10 @@ from utility.nix_error import NixError
 
 
 class RenameScript:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
 
-    def rename(self, name_old: str, name_new: str):
+    def rename(self, name_old: str, name_new: str) -> None:
         if name_old == name_new:
             raise NixError("Old and new script names are the same: {}".format(name_old))
 

@@ -35,18 +35,18 @@ def init(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Initialize subparser for the export command")
 
-    subparser = subparsers.add_parser('export',
-                                      help='Export a script.')
+    _subparser = subparsers.add_parser('export',
+                                       help='Export a script.')
 
-    subparser.add_argument(type=str,
-                           help="Name of script to export",
-                           dest='name')
+    _subparser.add_argument(type=str,
+                            help="Name of script to export",
+                            dest='name')
 
-    subparser.add_argument(type=str,
-                           help="Name of exported file",
-                           dest='path')
+    _subparser.add_argument(type=str,
+                            help="Name of exported file",
+                            dest='path')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

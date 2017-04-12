@@ -19,7 +19,7 @@ from utility.nix_error import NixError
 
 
 class ImportScript:
-    def __init__(self, path):
+    def __init__(self, path: str) -> None:
         self._config = Config()
         self._path = path
         self._name = None
@@ -27,7 +27,7 @@ class ImportScript:
         self._tags = None
         self._code = None
 
-    def create(self):
+    def create(self) -> None:
         self._import()
 
         _invalid_tags = self._config.get_tags().get_invalid_tags(self._tags)
@@ -51,7 +51,7 @@ class ImportScript:
 
         self._config.write()
 
-    def _import(self):
+    def _import(self) -> None:
         _content = self._read()
 
         _lines = _content.splitlines()

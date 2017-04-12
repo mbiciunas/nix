@@ -31,16 +31,16 @@ def add_subparser(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Define a cli parser for listing scripts")
 
-    subparser = subparsers.add_parser('list',
-                                      help='List available scripts')
+    _subparser = subparsers.add_parser('list',
+                                       help='List available scripts')
 
-    subparser.add_argument("-t", "--tag",
-                           type=str,
-                           help="Filter by tags",
-                           nargs='+',
-                           dest='tags')
+    _subparser.add_argument("-t", "--tag",
+                            type=str,
+                            help="Filter by tags",
+                            nargs='+',
+                            dest='tags')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

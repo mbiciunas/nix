@@ -31,14 +31,14 @@ def add_subparser(subparsers: argparse._SubParsersAction):
     """
     LOG.debug("Define a cli parser for showing scripts")
 
-    subparser = subparsers.add_parser('show',
-                                      help='Show the contents of a script.')
+    _subparser = subparsers.add_parser('show',
+                                       help='Show the contents of a script.')
 
-    subparser.add_argument(type=str,
-                           help="Name of script",
-                           dest='script')
+    _subparser.add_argument(type=str,
+                            help="Name of script",
+                            dest='script')
 
-    subparser.set_defaults(func=_process)
+    _subparser.set_defaults(func=_process)
 
 
 def _process(args):

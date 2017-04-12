@@ -19,11 +19,11 @@ from utility.nix_error import NixError
 
 
 class CreateTag:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
         self._tags = self._config.get_tags()
 
-    def create(self, tag: str, description: str):
+    def create(self, tag: str, description: str) -> None:
         if self._tags.exist(tag):
             raise NixError("Tag already exists: {}".format(tag))
 

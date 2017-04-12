@@ -31,7 +31,7 @@ class ConfigScript:
     STATUS_COMPILE_ERROR = 1
     STATUS_RUNTIME_ERROR = 2
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._script = {self.SCRIPT_NAME: "",
                         self.SCRIPT_DESCRIPTION: "",
                         self.SCRIPT_STATUS: 0,
@@ -40,25 +40,25 @@ class ConfigScript:
 
         self._path_temp = None
 
-    def set_name(self, name: str):
+    def set_name(self, name: str) -> None:
         self._script[self.SCRIPT_NAME] = name
 
     def get_name(self) -> str:
         return self._script[self.SCRIPT_NAME]
 
-    def set_desc(self, description: str):
+    def set_desc(self, description: str) -> None:
         self._script[self.SCRIPT_DESCRIPTION] = description
 
     def get_desc(self) -> str:
         return self._script[self.SCRIPT_DESCRIPTION]
 
-    def set_status(self, status: int):
+    def set_status(self, status: int) -> None:
         self._script[self.SCRIPT_STATUS] = status
 
     def get_status(self) -> int:
         return self._script[self.SCRIPT_STATUS]
 
-    def set_code(self, code: str):
+    def set_code(self, code: str) -> None:
         self._script[self.SCRIPT_CODE] = code
 
     def get_code(self) -> str:
@@ -67,21 +67,21 @@ class ConfigScript:
     def get_tags(self) -> typing.List[str]:
         return self._script[self.SCRIPT_TAG]
 
-    def add_tags(self, tags: typing.List[str]):
+    def add_tags(self, tags: typing.List[str]) -> None:
         for _tag in tags:
             self.add_tag(_tag)
 
-    def add_tag(self, tag: str):
+    def add_tag(self, tag: str) -> None:
         self._script[self.SCRIPT_TAG].append(tag)
 
-    def delete_tags(self, tags: typing.List[str]):
+    def delete_tags(self, tags: typing.List[str]) -> None:
         for _tag in tags:
             self._script[self.SCRIPT_TAG].remove(_tag)
 
-    def delete_tag(self, tag: str):
+    def delete_tag(self, tag: str) -> None:
         self._script[self.SCRIPT_TAG].remove(tag)
 
-    def make_temp(self, contents: str):
+    def make_temp(self, contents: str) -> None:
         (_fd, _path) = tempfile.mkstemp()
         _fp = os.fdopen(_fd, 'w')
         _fp.write(contents)
@@ -89,7 +89,7 @@ class ConfigScript:
 
         self._path_temp = _path
 
-    def call_editor(self):
+    def call_editor(self) -> None:
         editor = os.getenv('EDITOR', 'vi')
 
         subprocess.call('%s %s' % (editor, self._path_temp), shell=True)
@@ -110,7 +110,6 @@ class ConfigScript:
             compile(self.get_code(), self.get_name(), 'exec')
         except SyntaxError as e:
             _success = False
-            # print("Syntax Error: {}".format(e))
             print("Syntax Error - filename: {}".format(e.filename))
             print("Syntax Error - line: {}".format(e.lineno))
             print("Syntax Error - msg: {}".format(e.msg))
@@ -122,7 +121,7 @@ class ConfigScript:
     def export_data(self) -> typing.Dict[str, typing.Union[str, int, typing.List[str]]]:
         return self._script
 
-    def import_data(self, _data: dict):
+    def import_data(self, _data: dict) -> None:
         self._script[self.SCRIPT_NAME] = _data[self.SCRIPT_NAME]
         self._script[self.SCRIPT_DESCRIPTION] = _data[self.SCRIPT_DESCRIPTION]
         self._script[self.SCRIPT_STATUS] = _data[self.SCRIPT_STATUS]

@@ -20,11 +20,11 @@ from utility.print_table import PrintTable
 
 
 class List:
-    def __init__(self):
+    def __init__(self) -> None:
         self._config = Config()
         self._tags = self._config.get_tags()
 
-    def list(self, script: str):
+    def list(self, script: str) -> None:
         _script = self._config.get_scripts().find_by_name(script)
 
         if _script is None:

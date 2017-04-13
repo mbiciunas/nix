@@ -64,6 +64,3 @@ def script(prog: str, args: typing.List[str]):
     else:
         _args = _parser.parse_args(args)
         _args.func(_args)
-
-if __name__ == '__main__':
-    pass

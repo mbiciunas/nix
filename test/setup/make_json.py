@@ -76,23 +76,3 @@ class MakeJson:
         _json += '}'
 
         return _json
-
-
-def main():
-    _make_json = MakeJson()
-
-    _make_json.add_script("script1", "script description 1", "print('This is code 1')", 0, ["tag1", "tag2"])
-    _make_json.add_script("script2", "script description 2", "print('This is code 2')", 1, ["tag2", "tag3"])
-    _make_json.add_tag("tag1", "tag description 1")
-    _make_json.add_tag("tag2", "tag description 2")
-    _make_json.add_tag("tag3", "tag description 3")
-
-    _json = _make_json.make()
-    print(_json)
-    parsed = json.loads(_json)
-
-    print(json.dumps(parsed, indent=4, sort_keys=False))
-    # print(_setup._make_json())
-
-if __name__ == "__main__":
-    main()

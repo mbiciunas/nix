@@ -14,30 +14,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import pytest
 
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.2.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+from config.config import Config
+from config.tag.create_tag import CreateTag
+from utility.nix_error import NixError
 
 
-)
+class TestCreateTag:
+    def test_create(self, config_valid):
+        _create_tag = CreateTag()
+
+        _create_tag.create(config_valid.TAG_INVALID_1, "invalid tag")
+
+        _tags = Config().get_tags()
+
+        assert _tags.exist(config_valid.TAG_INVALID_1), \
+            "Tag was not created: {}".format(config_valid.TAG_INVALID_1)
+
+    def test_create_exists(self, config_valid):
+        _create_tag = CreateTag()
+
+        with pytest.raises(NixError):
+            _create_tag.create(config_valid.TAG_VALID_1, "valid tag")
+

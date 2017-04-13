@@ -14,30 +14,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import pytest
 
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.2.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+from config.script.show_script import ShowScript
+from utility.nix_error import NixError
 
 
-)
+class TestShowScript:
+    def test_show(self, config_valid, capsys):
+        _show_script = ShowScript()
+
+        _show_script.show(config_valid.SCRIPT_VALID_1)
+
+        out, err = capsys.readouterr()
+
+        assert config_valid.SCRIPT_VALID_CODE_1 in out
+
+    def test_show_invalid_name(self, config_valid):
+        _show_script = ShowScript()
+
+        with pytest.raises(NixError):
+            _show_script.show(config_valid.SCRIPT_INVALID_1)

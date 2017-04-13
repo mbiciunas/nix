@@ -1,43 +1,43 @@
 #!/usr/bin/env python3
-"""
-Nix
-Copyright (C) 2017  Mark Biciunas
+#
+# Nix
+# Copyright (c) 2017  Mark Biciunas.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-"""
-
-import sys
 import logging.handlers
+import sys
 
-from command_line_nix import cli
-from libnix.exception.nix_error import NixError
+from cli_nix.cli import CLI
+from utility.nix_error import NixError
 
 LOG = logging.getLogger(__name__)
 
 
 class Nix(object):
-    """Object which defines the main entry to Nix configuration.
+    """
+    Main entry to the Nix program.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         """
         # self.init_log()
 
         LOG.debug("Create instance of {}".format(self.__class__.__name__))
 
-        _cli = cli.CLI()
+        _cli = CLI()
 
         if len(sys.argv) == 1:
             _cli.print_help()

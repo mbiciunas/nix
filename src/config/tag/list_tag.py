@@ -14,30 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-from setuptools import setup
-from setuptools import find_packages
-import shutil
-
-shutil.rmtree("build", ignore_errors=True)
-shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree("egg-info", ignore_errors=True)
-
-setup(
-    name='nix',
-    version='0.2.0',
-    package_dir={'': 'src'},
-    packages=find_packages("src"),
-    install_requires=['pytest', ],
-    url='',
-    license='GPLv3',
-    author='Mark Biciunas',
-    author_email='mbiciunas@gmail.com',
-    description='Nix management system for Linux.',
-    entry_points={
-        'console_scripts': ['nix = nix:main',
-                            'nixconfig = nixconfig:main', ],
-    },
+from config.config import Config
+from utility.print_table import PrintTable
 
 
-)
+class ListTag:
+    def __init__(self) -> None:
+        self._config = Config()
+        self._tags = self._config.get_tags()
+
+    def list(self) -> None:
+        _rows = []
+
+        for _tag in self._tags.list():
+            _rows.append([_tag.get_name(),
+                          _tag.get_desc()]),
+            # print("{}".format(_tag))
+
+        _print_table = PrintTable("Tag", "Description")
+        _print_table.add_data(_rows)
+        _print_table.print()
